@@ -1,0 +1,23 @@
+{
+    "name": "studentmanagementapi",
+    "version": "1.0.0",
+    "description": "Student Management",
+    "main": "app.js",
+    "scripts": {
+        "lint": "eslint .",
+        "start": "nodemon",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Usman Ali",
+    "license": "MIT",
+    "dependencies": {
+        "@types/mongoose": "^5.5.32",
+        "express": "^4.17.1",
+        "mongoose": "^5.7.13",
+        "morgan": "^1.9.1",
+        "nodemon": "^2.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.7.2"
+    }
+}
