@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const book = require("./Models/bookModel")
 
 //Middleware
-app.use(morgan('combined'))
+app.use(morgan('dev'))
 
 
 mongoose.Promise = global.Promise;
@@ -28,10 +28,7 @@ mongoose.connect('mongodb://localhost:27017/studentmgt', {
 
 bookRouter.route("/book")
     .get((req, res) => {
-
         const { query } = req;
-        console.log(query)
-
         book.find(query, (err, books) => {
             if (err) {
                 console.log(`Error: ` + err)
@@ -45,6 +42,25 @@ bookRouter.route("/book")
             }
         });
 
+    })
+
+
+
+bookRouter.route("/book/:bookId")
+    .get((req, res) => {
+        const bookid = req.params.bookId;
+        book.findById(bookid, (err, book) => {
+            if (err) {
+                console.log(`Error: ` + err)
+                return res.send(err)
+            } else {
+                if (!book) {
+                    return res.send(`${bookid} - not found`)
+                } else {
+                    return res.json(book)
+                }
+            }
+        });
     })
 
 app.use("/api", bookRouter)
