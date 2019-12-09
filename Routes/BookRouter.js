@@ -9,6 +9,9 @@ function routes(book) {
     bookRouter.route("/book")
         .get(controller.get)
 
+    bookRouter.route("/book")
+        .post(controller.post)
+
     bookRouter.use("/book/:bookId", (req, res, next) => {
         const bookid = req.params.bookId;
         book.findById(bookid, (err, book) => {
@@ -65,12 +68,6 @@ function routes(book) {
 
 
 
-    bookRouter.route("/book")
-        .post((req, res) => {
-            let bk = new book(req.body);
-            bk.save();
-            return res.status(201).json(bk)
-        })
 
     return bookRouter;
 }

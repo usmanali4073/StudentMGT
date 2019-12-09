@@ -21,8 +21,22 @@ function bookController(book) {
         return res.json(req.book).status(200)
     }
 
-    return {get, getbyId }
 
+    function post(req, res) {
+
+        let bk = new book(req.body);
+
+        if (!req.body.title) {
+            res.status(400)
+            return res.send('Title is required')
+        }
+
+        bk.save();
+        res.status(201)
+        return res.json(bk)
+    }
+
+    return {get, getbyId, post }
 }
 
 module.exports = bookController;
