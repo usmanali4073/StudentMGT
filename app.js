@@ -49,6 +49,6 @@ app.use("/api", bookRouter)
 
 
 app.get('/', (req, res) => res.send('Web API  !'))
-app.listen(port, () => console.log(`app listening on port!`))
+app.server = app.listen(port, () => console.log(`app listening on port!`))
 
 module.exports = app;
